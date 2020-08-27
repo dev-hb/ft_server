@@ -10,9 +10,16 @@ docker build -t ft_server:1.0 .
 ```
 ### Container
 ```bash
+# Run container
 docker run --name ft_nginx -d -p 8080:80  ft_server:1.0
+# See running containers
 docker ps
+# See dead containers
 docker ps -a
+# Open the running container
+docker exec -it ft_nginx /bin/bash
+# Stop the running container
+docker stop ft_nginx
 ```
 
 ### Util commands

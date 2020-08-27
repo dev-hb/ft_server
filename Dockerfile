@@ -12,6 +12,12 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY ./srcs/config/supervisord.conf	/etc/supervisor/conf.d/supervisord.conf
 
+COPY ./srcs/nginx/default /etc/nginx/sites-available/default
+
+COPY ./srcs/index.php /var/www/html/index.php
+
+#COPY ./srcs/website/ /var/www/html
+
 CMD ["/usr/bin/supervisord"]
 
 

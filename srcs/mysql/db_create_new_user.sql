@@ -8,8 +8,11 @@ FLUSH PRIVILEGES;
 
 CREATE DATABASE db_ft_server;
 USE db_ft_server
-CREATE TABLE students (Name VARCHAR(50));
-INSERT INTO students(Name)
-VALUES ("Edith");
-VALUES ("Zakaria");
+CREATE TABLE students (
+     id MEDIUMINT NOT NULL AUTO_INCREMENT,
+     name CHAR(30) NOT NULL,
+     PRIMARY KEY (id)
+);
+INSERT INTO students(name) VALUES ('Edith'), ('Zakaria');
+SELECT * FROM students;
 exit

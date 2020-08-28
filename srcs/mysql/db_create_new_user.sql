@@ -1,0 +1,15 @@
+CREATE USER 'dbadmin'@'localhost';
+GRANT ALL PRIVILEGES
+ON *.*
+TO 'dbadmin'@'localhost'
+IDENTIFIED BY PASSWORD '*9CFBBC772F3F6C106020035386DA5BBBF1249A11' WITH GRANT OPTION;
+GRANT PROXY ON ''@'%' TO 'dbadmin'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+CREATE DATABASE db_ft_server;
+USE db_ft_server
+CREATE TABLE students (Name VARCHAR(50));
+INSERT INTO students(Name)
+VALUES ("Edith");
+VALUES ("Zakaria");
+exit

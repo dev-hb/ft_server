@@ -6,8 +6,8 @@ echo "<h2>This is the $name server working..</h2>";
 
 echo "<h3>Fetching data from MariaDB</h3>";
 
-$conn = new mysqli("localhost", "ft_server", "toor", "test");
-$res = $conn->query("SELECT * FROM users");
+$conn = new mysqli("localhost", "dbadmin", "toor", "db_ft_server");
+$res = $conn->query("SELECT * FROM students");
 
 if($conn->connect_error == ""){
     $data = [];

@@ -14,9 +14,13 @@ COPY ./srcs/config/supervisord.conf	/etc/supervisor/conf.d/supervisord.conf
 
 COPY ./srcs/nginx/default /etc/nginx/sites-available/default
 
-COPY ./srcs/index.php /var/www/html/index.php
+RUN rm /var/www/html/*
 
-#COPY ./srcs/website/ /var/www/html
+COPY ./index.php /var/www/html/
+
+#COPY ./srcs/website/* /var/www/html/
+
+#COPY ./srcs/phpMyAdmin /var/www/html/phpMyAdmin
 
 CMD ["/usr/bin/supervisord"]
 

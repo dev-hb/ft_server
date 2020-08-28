@@ -17,8 +17,8 @@ RUN rm /var/www/html/*
 COPY ./index.php /var/www/html/
 
 # mysql on php
-COPY ./srcs/mysql/db_create_new_user.sql /etc/mysql
-RUN	service mysql start && mysql -u root < /etc/mysql/db_create_new_user.sql
+COPY ./srcs/mysql/db_create_new_user.sql /etc/mysql/
+RUN mysql -u root < /etc/mysql/db_create_new_user.sql
 
 #COPY ./srcs/website/* /var/www/html/
 

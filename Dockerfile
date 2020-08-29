@@ -4,8 +4,8 @@ FROM debian:buster
 RUN apt-get update -y	 &&\
 		apt-get install wget vim -y	 &&\
 		apt-get install supervisor -y	 &&\
-		apt-get install nginx -y	 &&\
-		apt-get install default-mysql-server -y	 &&\
+		apt-get install nginx -y	&&\
+		apt-get install mariadb-server -y	&&\
 		apt-get install php-fpm php-cli php-mbstring php-mysql -y
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -17,8 +17,8 @@ RUN rm /var/www/html/*
 COPY ./index.php /var/www/html/
 
 # mysql on php
-COPY ./srcs/mysql/db_create_new_user.sql /etc/mysql/
-RUN mysql -u root < /etc/mysql/db_create_new_user.sql
+COPY ./srcs/mysql/create_db.sh ./
+RUN bash create_db.sh
 
 #COPY ./srcs/website/* /var/www/html/
 

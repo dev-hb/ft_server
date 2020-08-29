@@ -8,10 +8,17 @@ echo "FLUSH PRIVILEGES;" | mysql -u root
 
 
 # Creating Table and Data
-echo "USE db_wordpress;"
-echo "CREATE TABLE students (
-     id MEDIUMINT NOT NULL AUTO_INCREMENT,
-     name CHAR(30) NOT NULL,
-     PRIMARY KEY (id)
-);"
-echo "INSERT INTO students(name) VALUES ('Edith'), ('Zakaria');"
+# service mysql start
+# echo "mysql -u admin -p db_wordpress;" | mysql -u root
+# echo "USE db_wordpress;"  | mysql -u admin
+# echo "CREATE TABLE students (id MEDIUMINT NOT NULL AUTO_INCREMENT, firstname CHAR(30) NOT NULL, PRIMARY KEY (id) );"  | mysql -u admin
+# echo "INSERT INTO students(firstname) VALUES ('Edith'), ('Zakaria');"  | mysql -u admin
+
+
+mysql --user=admin --password=adminpsw db_wordpress << EOF
+CREATE TABLE students (id MEDIUMINT NOT NULL AUTO_INCREMENT, firstname CHAR(30) NOT NULL, PRIMARY KEY (id) );
+INSERT INTO students (firstname) VALUES ("Edith");
+INSERT INTO students (firstname) VALUES ("Zakaria");
+INSERT INTO students (firstname) VALUES ("Juanito");
+INSERT INTO students (firstname) VALUES ("Elian");
+EOF

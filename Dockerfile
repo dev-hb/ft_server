@@ -1,30 +1,22 @@
 FROM debian:buster
 
+LABEL maintainer="Edith Puclla <epuclla@student.42.us.org>"
 
-RUN apt-get update -y	 &&\
-		apt-get install wget vim -y	 &&\
-		apt-get install supervisor -y	 &&\
-		apt-get install nginx -y	&&\
-		apt-get install mariadb-server -y	&&\
-		apt-get install php-fpm php-cli php-mbstring php-mysql -y
+RUN apt-get update -y &&\
+		apt-get install nano vim dialog apt-utils -y &&\
+		apt-get install curl -y &&\
+		apt-get install nginx -y &&\
+		apt-get install mariadb-server -y &&\
+		apt-get install php7.3-cli php7.3-fpm php7.3-mysql php7.3-json php7.3-opcache php7.3-mbstring php7.3-xml php7.3-curl -y
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-#php on nginx
-COPY ./srcs/config/supervisord.conf	/etc/supervisor/conf.d/supervisord.conf
-COPY ./srcs/nginx/default /etc/nginx/sites-available/default
-RUN rm /var/www/html/*
-COPY ./index.php /var/www/html/
+EXPOSE 80
+EXPOSE 443
 
-# mysql on php
-COPY ./srcs/mysql/create_db.sh ./
-RUN bash create_db.sh
+COPY srcs /tmp/
 
-#COPY ./srcs/website/* /var/www/html/
-
-#COPY ./srcs/phpMyAdmin /var/www/html/phpMyAdmin
-
-CMD ["/usr/bin/supervisord"]
+CMD bash ./tmp/setup_application.sh
 
 
 
